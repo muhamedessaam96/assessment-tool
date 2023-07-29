@@ -1,5 +1,6 @@
 <template>
   <div class="main-page">
+    <!-- <gauge-chart /> -->
     <div class="assessment-container">
       <img src="../src/assets/logoweb.png" class="logo-img" />
       <h2
@@ -320,8 +321,8 @@
         >
           Submit
         </button>
-        <button  class="result-button" v-if="step==11"  @click="downloadPDF"
-             style=" width: 100%; background-color: red; border: none; color: white; padding:10px ;">Dawnload PDF</button>
+        <button  class="result-button" v-if="step==11 && !isPDf"  @click="downloadPDF"
+             style=" width: 100%; background-color: red; border: none; color: white; padding:10px ;">Download PDF</button>
       </div>
       <div v-if="showError" class="modal">
       <div class="modal-content-in">
@@ -342,7 +343,7 @@
 import GaugeChart from "./components/GaugeChart.vue";
 import TermsAndConditions from './components/TermsAndConditions.vue';
 import html2pdf from 'html2pdf.js';
-
+import Email from '@/assets/smtp/smtp.js';
 
 export default {
   components: { GaugeChart, TermsAndConditions},
@@ -449,17 +450,81 @@ export default {
       showTermsAgree:false,
       socore:null,
       emailError:'',
-      mobileError:''
+      mobileError:'',
+      isPDf:false
     };
   },
   created() {
     setInterval(() => (this.toggle = !this.toggle), 1111);
   },
   methods: {
+    sendEmail() {
+  // ... Your existing code for sending the email ...
+  this.isPDf = true;
+  // Generate the PDF
+  const element = document.querySelector('.main-page');
+  const options = {
+    margin: [0, 0, 0, 0],
+    filename: 'Report.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  html2pdf().from(element).set(options).output('datauristring').then((pdfDataUri) => {
+    // Attach the PDF to the email
+    Email.send({
+      Host: "smtp.elasticemail.com",
+      Username: "muhamedessam96@hotmail.com",
+      Password: "03E3C777907DAA6389E2840E4A0DD03B7782",
+      To: this.userEmail,
+      From: "muhamedessam96@hotmail.com",
+      Subject: "The REPORT",
+      Body: `Dear ${this.userName}, <br/><br/><br/>
+             Thank you for completing the Organisation Wellness Assessment by TTM Associates.
+             Kindly find below results for your assessment,
+             <br/>This score is simply a measurement of where your
+             organisation’s currently stands for the new era.
+             We encourage you to book a free consultation with one of our consultants to gain a comprehensive
+             understanding of your score, as well as explore the options to further enhance your organisation’s Wellness`,
+      Attachments: [
+        {
+          name: "Report.pdf",
+          data: pdfDataUri
+        }
+      ]
+    }).then(
+      message => alert(message)
+    );
+    this.isPDf = false;
+
+  });
+
+},
+  // sendEmail() {
+  //             Email.send({
+  //             Host : "smtp.elasticemail.com",
+  //             Username : "muhamedessam96@hotmail.com",
+  //             Password : "03E3C777907DAA6389E2840E4A0DD03B7782",
+  //             To : this.userEmail,
+  //             From : "muhamedessam96@hotmail.com",
+  //             Subject : "This REPORT",
+  //             Body :`Dear ${this.userName}, <br/><br/><br/>
+  //                   Thank you for completing the Organisation Wellness Assessment by TTM Associates.
+  //                   Kindly find below results for your assessment,
+  //                   <br/>This score is simply a measurement of where your
+  //                   organisation’s currently stands for the new era.
+  //                   We encourage you to book a free consultation with one of our consultants to gain a comprehensive
+  //                   understanding of your score, as well as explore the options to further enhance your organisation’s Wellness`
+  //       }).then(
+  //         message => alert(message)
+  //       );
+  //   },
     downloadPDF() {
-      const element = document.querySelector('.step-result');
+      this.isPDf = true;
+      const element = document.querySelector('.main-page');
       const options = {
-        margin: [20, 20, 20, 20],
+        margin: [0, 0, 0, 0],
         filename: 'step-result.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2 },
@@ -467,6 +532,8 @@ export default {
       };
 
       html2pdf().from(element).set(options).save();
+      // this.isPDf = false;
+
     },
     updateAnswerState(questionIndex, selectedAnswer) {
       this.questions[questionIndex].answers.forEach((answer) => {
@@ -512,7 +579,7 @@ export default {
       this.socore =score
       return score;
     },
-    submitForm() {
+  async  submitForm() {
     this.emailError = "";
     this.mobileError = "";
 
@@ -537,6 +604,8 @@ export default {
 
     // If all validations pass, proceed to the next step
     this.step++;
+   await this.sendEmail();
+
   },
   },
 };
