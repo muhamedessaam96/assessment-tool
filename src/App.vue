@@ -340,13 +340,12 @@
   </div>
 </template>
 <script>
-import GaugeChart from "./components/GaugeChart.vue";
 import TermsAndConditions from './components/TermsAndConditions.vue';
 import html2pdf from 'html2pdf.js';
 import Email from '@/assets/smtp/smtp.js';
 
 export default {
-  components: { GaugeChart, TermsAndConditions},
+  components: { TermsAndConditions},
   data() {
     return {
       showError: false,
