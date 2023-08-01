@@ -128,7 +128,7 @@
           <label>
             <div style="display: flex; align-items: center; gap: 2px;">
               <span>Email:</span>
-              <span style="font-size: 10px;color: #5d2977;">insert you business email for exclusive content</span>
+              <span class="note" style="font-size: 10px;color: #5d2977;">insert you business email for exclusive content</span>
               <!-- <div class="form-row tooltip" style="padding-top: 5px;" data-tooltip="insert you business email for exclusive content">
                  <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -669,7 +669,7 @@ body {
   width: auto;
   height: 50%;
   padding: 10px;
-  height: 200px;
+  /* height: 200px; */
 }
 .error-message{
   color: red;
@@ -953,7 +953,15 @@ body {
     min-height: 100% !important;
     min-width: 100%;
   }
-
+  .note{
+    font-size: 7px !important;
+    margin: 0 !important;
+    font-weight: bold;
+  }
+  .top-result img{
+  max-width: 250px;
+  height: 200px;
+}
   .assessment-container {
     width: 90%;
     height: 90%;

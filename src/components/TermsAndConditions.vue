@@ -189,4 +189,12 @@ export default {
   text-decoration: none;
   cursor: pointer;
 }
+@media (max-width: 767px) {
+  .modal-content{
+    width: 75%;
+    height: 75%;
+  }
+
+}
+
 </style>
