@@ -35,7 +35,7 @@
       </div>
 
       <div class="step-question" v-else-if="step > 1 && step <= 9" :key="step">
-        <p style="text-align: center; font-weight: bold;"> Employee wellness® Readiness</p>
+        <p style="text-align: center; font-weight: bold;"> Employee Wellness® Readiness</p>
         <h3 style="text-align: center; color: #616161; font-size: 16px; margin-top: 0; padding-bottom: 30px;">
           Question {{ step - 1 }}/8
           <hr style="height: 2px; background-color: #616161; width: 100px; border-radius: 100%;">
@@ -245,51 +245,34 @@
            </div>
             <div class="right-step-result-chart" v-if="socore>26">
               <h4 style="font-size: 14px;font-weight: bold;">Organisation Wellness</h4>
-              <p style="font-size: 14px; font-weight: normal;">Good position in your <span style="font-weight: bold;">Organisation Wellness</span>  with high 
-                potential to thrive! </p>
-                <p style="font-size: 12px;">A  number of key steps have already been taken towards the right direction 
-                    to enhance the <span style="font-weight: bold;">employee wellness</span> in your organisation for the new era.
-                    However, it is important to identify accurately the <span style="font-weight: bold;">Wellness Level</span> in your 
-                    organisation immediately, in order to formulate the appropriate plans that 
-                    will enable the entire organisation to be aligned correctly and effectively, 
-                    thus enhancing the potential to thrive in the new era!
-                    A more detailed and focused <span style="font-weight: bold;">Organisational Wellness</span> approach is 
-                    recommended, tailored to your organisation needs, to identify the 
-                    appropriate values within the organisation that can driven all departments 
-                    to achieve their goals to enhance employee loyalty, Engagement and at the 
-                    same time increase workforce performance, thus enabling the organisation 
-                    to achieve its goals.
+                
+
+              <p style="font-size: 14px; font-weight: normal;">Good position in your <span style="font-weight: bold;">Organisation Wellness</span> with high potential to thrive!</p>
+                <p style="font-size: 12px;">Key steps have been taken to enhance <span style="font-weight: bold;">Employee Wellness</span> in your organisation for the new era.
+                   However, it is important to accurately identify the <span style="font-weight: bold;">Wellness</span> level in your organisation immediately to formulate
+                    appropriate plans that will enable the entire organisation to be aligned correctly and effectively, thus enhancing its potential to thrive in the new era.
+                     A more detailed and focused <span style="font-weight: bold;">Organisational Wellness</span> approach is recommended, tailored to your organisation’s needs,
+                      to identify the appropriate values within the organisation that can drive all departments to achieve their goals and enhance employee loyalty
+                       and engagement while increasing workforce performance, thus enabling the organisation to achieve its goals.
                 </p>
             </div>
             <div class="right-step-result-chart" v-if="socore>13 &&socore<26">
               <h4 style="font-size: 14px;font-weight: bold;">Organisation Wellness</h4>
-              <p style="font-size: 14px; font-weight: normal;">Average position in your Organisation Wellness with promising growth potential</p>
-                <p style="font-size: 12px;">There has been some steps taken towards enhancing the <span style="font-weight: bold;">employee 
-                    wellness</span> in your organisation for the new era, but it is critical to implement 
-                    more impactful enhancements and enable Wellness at the entire 
-                    organisation.
-                    It is imperative to identify the right values within the organisation that can 
-                    driven all functions to enhance employee loyalty, Engagement and at the 
-                    same time increase workforce performance, thus enabling the organisation 
-                    to achieve its goals. 
-                    A more focused <span style="font-weight: bold;">Organisational Wellness</span> approach is needed, tailored to 
-                    the needs of your organisation, supported by all internal functions and 
-                    employees to achieve your bussuness goals.
+              <p style="font-size: 14px; font-weight: normal;">Average position in your <span style="font-weight: bold;">Organisation Wellness</span> with promising growth potential!</p>
+                <p style="font-size: 12px;">
+                  To enhance <span style="font-weight: bold;">Employee Wellness</span> in your organisation, it is critical to implement impactful enhancements and enable <span style="font-weight: bold;">Wellness</span> across the entire organisation.
+                   Identify the right values within the organisation that can drive all functions to enhance employee loyalty and engagement while increasing workforce performance.
+                    A more focused <span style="font-weight: bold;">Organisational Wellness</span> approach is needed,
+                   tailored to the needs of your organisation and supported by all internal functions and employees to achieve business goals.
                 </p>
             </div>
             <div class="right-step-result-chart" v-if="socore<=13">
               <h4 style="font-size: 14px;font-weight: bold;">Organisation Wellness</h4>
-              <p style="font-size: 14px; font-weight: normal;">Vulnerable position in your Organisation Wellness, with substantial room for improvement</p>
-                <p style="font-size: 12px;">Your organisation’s <span style="font-weight: bold;">wellness</span> need substantial changes to enhance your
-                  employees experience at the entire organization.
-                  In the new environment, it is critical to consider realigning organisational
-                  wellness to be driven by your key values that will guide all areas within 
-                  your organisation to substantially enhance employee loyalty, Engagement 
-                  and workforce performance. 
-                  It is critical to identify as soon as possible the <span style="font-weight: bold;">Wellness</span> within your 
-                  organisation, identify the critical gap and formulate business plans 
-                  accordingly.
-                </p>
+               <p style="font-size: 14px; font-weight: normal;">Vulnerable position in your <span style="font-weight: bold;">Organisation Wellness</span> with substantial room for improvement!</p>
+               <p style="font-size: 12px;">In the new environment, it is critical to consider realigning <span style="font-weight: bold;">Organisational Wellness</span> to be driven by your key values,
+              which will guide all areas within your organisation to substantially enhance employee loyalty, engagement, and workforce performance.
+                It is critical to identify the wellness within your organisation as soon as possible,
+                identify the critical gap, and formulate business plans accordingly</p>
             </div>
           </div>
           <!-- <div class="bottom-result-step">
@@ -595,11 +578,11 @@ export default {
     }
 
     // Mobile number validation (assuming 10 digits for a basic example)
-    const mobilePattern = /^\d{11}$/;
-    if (!mobilePattern.test(this.userMobile)) {
-      this.mobileError = "Please enter a valid mobile number (11 digits).";
-      return;
-    }
+    const mobilePattern = /^(?:\d{11}|\d{13})$/;
+if (!mobilePattern.test(this.userMobile)) {
+  this.mobileError = "Please enter a valid mobile number.";
+  return;
+}
 
     // If all validations pass, proceed to the next step
     this.step++;
@@ -949,9 +932,13 @@ body {
 
 @media (max-width: 767px) {
   .main-page {
-    padding: 10px;
-    min-height: 100% !important;
-    min-width: 100%;
+    /* padding: 1px; */
+    /* min-height: 100% !important; */
+    min-width: 100% !important;
+    overflow: hidden !important;
+    font-size: 14px;
+    padding-top: 15%;
+  padding-bottom: 15%;
   }
   .note{
     font-size: 7px !important;
@@ -959,8 +946,15 @@ body {
     font-weight: bold;
   }
   .top-result img{
-  max-width: 250px;
+  /* max-width: 250px; */
   height: 200px;
+  width: 270px;
+  padding: 0px !important;
+  margin: 0 !important;
+  
+}
+.top-result{
+  padding: 1px;
 }
   .assessment-container {
     width: 90%;
