@@ -7,7 +7,7 @@
         style="margin-bottom: 20px; text-align: center; font-size: 20px"
         v-if="step === 1"
       >
-        Wellness Readiness
+        Wellness Readiness®
       </h2>
       <div class="step-intro" style="padding: 10px;" key="step-intro" v-if="step === 1">
         <p style="
@@ -128,7 +128,7 @@
           <label>
             <div style="display: flex; align-items: center; gap: 2px;">
               <span>Email:</span>
-              <span class="note" style="font-size: 10px;color: #5d2977;">insert you business email for exclusive content</span>
+              <span class="note" style="font-size: 10px;color: red;">Use your business Email</span>
               <!-- <div class="form-row tooltip" style="padding-top: 5px;" data-tooltip="insert you business email for exclusive content">
                  <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -180,7 +180,7 @@
                 type="tel"
                 v-model="userMobile"
                 required
-                placeholder="Mobile Number"
+                placeholder="Example:+966xxx"
               />
             </label>
             <span class="error-message">{{ mobileError }}</span>
@@ -348,7 +348,7 @@ export default {
           ],
         },
         {
-          text: "I recognise the ways stress signals show up in my body",
+          text: "I recognise the ways stress signals show up in my body  because of my work",
           answers: [
             { text: "Strongly Agree", score: 5, selected: false },
             { text: "Agree", score: 4, selected: false },
