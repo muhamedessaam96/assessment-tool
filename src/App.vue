@@ -578,7 +578,7 @@ export default {
     }
 
     // Mobile number validation (assuming 10 digits for a basic example)
-    const mobilePattern = /^(?:\d{11}|\d{13})$/;
+    const mobilePattern = /^\+\d{10}(?:\d{2})?$/;
 if (!mobilePattern.test(this.userMobile)) {
   this.mobileError = "Please enter a valid mobile number.";
   return;
@@ -938,7 +938,7 @@ body {
     overflow: hidden !important;
     font-size: 14px;
     padding-top: 15%;
-  padding-bottom: 15%;
+    padding-bottom: 15%;
   }
   .note{
     font-size: 7px !important;
