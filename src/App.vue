@@ -24,9 +24,9 @@
         <p>The TTM Team </p>
         <div class="terms_conditions" >
           <input type="checkbox" id="termsAgree" name="terms_conditions" @click="termsAgree =!termsAgree"/>
-          <label for="termsAgree" style="font-weight: 500;">I agree with </label>
+          <label for="termsAgree" style="font-weight: 500; ">I agree with </label>
           <a href="#">
-            <terms-and-conditions style="width: 100%;"/>
+            <terms-and-conditions style="width: 100%; "/>
           </a>
         </div>
         <p style="color: red" v-if="showTermsAgree">
@@ -41,7 +41,7 @@
           <hr style="height: 2px; background-color: #616161; width: 100px; border-radius: 100%;">
         </h3>
         
-        <p style="font-weight: 700;margin-bottom: 1%;">{{ questions[step - 2].text }}?</p>
+        <p style="font-weight: 700;margin-bottom: 1%;">{{ questions[step - 2].text }}.</p>
         <div class="answers">
           <label
             class="answer-label"
@@ -408,7 +408,7 @@ export default {
           ],
         },
         {
-          text: "I am aware of my own feelings and perceptions when responding to life's challenges",
+          text: "I am aware of my own feelings, and perceptions when responding to my work-life’s challenges",
           answers: [
             { text: "Strongly Agree", score: 5, selected: false },
             { text: "Agree", score: 4, selected: false },
@@ -444,7 +444,7 @@ export default {
   // ... Your existing code for sending the email ...
   this.isPDf = true;
   // Generate the PDF
-  const element = document.querySelector('.main-page');
+  const element = document.querySelector('.step-result');
   const options = {
     margin: [0, 0, 0, 0],
     filename: 'Report.pdf',
@@ -507,7 +507,7 @@ export default {
       const element = document.querySelector('.main-page');
       const options = {
         margin: [0, 0, 0, 0],
-        filename: 'step-result.pdf',
+        filename: 'Report.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2 },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
