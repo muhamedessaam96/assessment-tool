@@ -443,7 +443,7 @@ export default {
     setInterval(() => (this.toggle = !this.toggle), 1111);
   },
   mounted(){
-    // this.makeApiCalltest()
+    this.makeApiCalltest()
   },
   methods: {
     sendEmail() {
@@ -598,80 +598,42 @@ export default {
   },
   
     async makeApiCalltest() {
-      try {
-        const jsonData = {
-          // "Question_1":"agree",
-          // "Question_2":" agree ",
-          // "Question_3":" agree ",
-          // "Question_4":" agree ",
-          // "Question_5":" agree ",
-          // "Question_6":" agree ",
-          // "Question_7":" agree ",
-          // "Question_8":" agree " ,
-          // "Question_9":"",
-          // "Question_10":"",
-          // "Question_11":"",
-          // "Question_12":"",
-          // "Email":"test@test.com",
-          // "Assessment_Name":"Wellness Assessment",
-          // "Company":" test ",
-          // "Country":" test ",
-          // "Industry":" test ",
-          // "Job_Title":" test ",
-          // "Mobile_Phone":"+201147787925",
-          // "First_Name":" test ",
-          // "Result":"50.5",
-          // "Score_Level":"test" ,
-          // "Surname":" test "
-        };
-        // Create a new FormData object and append the JSON data to it
-        const formData = new FormData();
-        formData.append('jsondata', JSON.stringify(jsonData));
-       // Define the API URL for the request
-        const apiUrl = 'https://www.zohoapis.eu/crm/v2/functions/assessmentresults/actions/execute';
-        
-        // Define the request parameters including API key and other static data
-        const params = {
-          auth_type: 'apikey',
-          zapikey: '1003.fc485b68bdf73305340465df16b1ad49.ac8aaa1b4e66c4be0937ebc3e949f9e2',
-          Question_1:"agree",
-          Question_2:"agree",
-          Question_3:"agree",
-          Question_4:"agree",
-          Question_5:"agree",
-          Question_6:"agree",
-          Question_7:"agree",
-          Question_8:"agree" ,
-          Question_9:"",
-          Question_10:"",
-          Question_11:"",
-          Question_12:"",
-          Email:"test@test.com",
-          Assessment_Name:"Wellness Assessment",
-          Company:" test ",
-          Country:" test ",
-          Industry:" test ",
-          Job_Title:" test ",
-          Mobile_Phone:"+201147787925",
-          First_Name:" test ",
-          Result:"50.5",
-          Score_Level:"test" ,
-          Surname:" test "
-        };
-       // Send a POST request to the API using axios
+      const apiUrl = 'https://www.zohoapis.eu/crm/v2/functions/assessmentresults/actions/execute?auth_type=apikey&zapikey=1003.fc485b68bdf73305340465df16b1ad49.ac8aaa1b4e66c4be0937ebc3e949f9e2';
 
-        const response = await axios.post(apiUrl, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-          params: params,
-        });
+          const params = {
+            Question_1: "agree",
+            Question_2: "agree",
+            Question_3: "agree",
+            Question_4: "agree",
+            Question_5: "agree", 
+            Question_6: "agree",
+            Question_7: "agree",
+            Question_8: "agree",
+            Question_9: "",
+            Question_10: "",
+            Question_11: "",
+            Question_12: "",
+            Email: "test@test.com",
+            Assessment_Name: "Wellness Assessment",
+            Company: " test ",
+            Country: " test ",
+            Industry: " test ",
+            Job_Title: " test ",
+            Mobile_Phone: "+201147787925",
+            First_Name: " test ",
+            Result: "50.5",
+            Score_Level: "test",
+            Surname: " test "
+          };
 
-        console.log(response.data);
-      } catch (error) {
-        console.error('Error making API call:', error);
-        // Handle errors here
-      }
+          const response = await axios.post(apiUrl, {
+            ...params,
+          }, {
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          })
+
 },
 
   },
